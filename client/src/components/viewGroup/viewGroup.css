@@ -1,0 +1,24 @@
+.group-info-card {
+  margin: 10px 0px;
+  padding: 20px 10px;
+  background-color: lightskyblue;
+}
+.group-info-card > div > .title {
+  font-weight: bolder;
+}
+.group-info-card > div > .value {
+  color: gray;
+}
+.add-expense-card {
+  margin: 20px 0px;
+  padding: 20px 10px;
+  background-color: lightgray;
+}
+.transaction-card {
+  padding: 20px 10px;
+}
+.transaction-card > div {
+  background-color: lightcyan;
+  border-radius: 5px;
+  margin: 10px 0px;
+}

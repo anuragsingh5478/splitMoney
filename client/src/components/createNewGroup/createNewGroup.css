@@ -1,0 +1,28 @@
+.create-new-group {
+}
+.create-new-group-heading {
+  font-size: 1.5rem;
+  font-weight: bolder;
+  text-align: center;
+}
+form > div {
+  margin: 10px 0px;
+}
+.create-new-group-info {
+  color: gray;
+  font-weight: bolder;
+}
+.add-member {
+  display: flex;
+}
+.member-list-heading {
+  font-size: 1.5rem;
+}
+.member-list {
+}
+.member-info {
+  display: flex;
+}
+.member-info {
+  margin: 10px 0px;
+}

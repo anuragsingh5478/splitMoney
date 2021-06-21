@@ -1,0 +1,19 @@
+.group-list-card {
+  border: 4px solid black;
+  margin: 10px 0px;
+}
+.group-list-card:hover {
+}
+
+.group-list-card-info {
+  font-size: 1.5rem;
+}
+.group-list-card-info-value {
+  color: slateblue;
+}
+.group-list-card-action-button {
+  display: flex;
+}
+.group-list-card-action-button > div > button {
+  margin: 10px;
+}
