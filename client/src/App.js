@@ -1,3 +1,4 @@
+import React from "react";
 import "./App.css";
 import {
   BrowserRouter as Router,
@@ -14,6 +15,8 @@ import Profile from "./profile/Profile";
 import CreateNewGroup from "./components/createNewGroup/CreateNewGroup";
 import ViewGroup from "./components/viewGroup/ViewGroup";
 import "bootstrap/dist/css/bootstrap.min.css";
+
+export const AuthContext = React.createContext();
 
 function App() {
   const { token, setToken, logout } = useToken();
@@ -47,7 +50,7 @@ function App() {
           <Route path="/create-new-group">
             <CreateNewGroup />
           </Route>
-          <Route path="/view-group/:id">
+          <Route path="/group/:id">
             <ViewGroup />
           </Route>
           <Route path="/profile">

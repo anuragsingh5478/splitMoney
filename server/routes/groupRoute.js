@@ -4,13 +4,22 @@ const router = express.Router();
 const verifyRoute = require("../routes/verifyRoute");
 
 const createNewGroupController = require("../controllers/createNewGroupController");
-const listGroupsController = require("../controllers/listGroupsContoller");
-const viewGroupController = require("../controllers/viewGroupController");
+const groupInfoController = require("../controllers/groupInfoContoller");
+const addTransactionController = require("../controllers/addTransactionController");
+router.get("/all", verifyRoute, groupInfoController.listGroups);
 
-router.get("/", verifyRoute, listGroupsController.listGroups);
+router.get("/one/:groupId", verifyRoute, groupInfoController.groupInfo);
 
-router.get("/view-group/:id", verifyRoute, viewGroupController.viewGroup);
+router.post(
+  "/create-new-group",
+  verifyRoute,
+  createNewGroupController.createNewGroup
+);
 
-router.post("/create-new-group", createNewGroupController.createNewGroup);
+router.post(
+  "/add-transaction",
+  verifyRoute,
+  addTransactionController.addTransaction
+);
 
 module.exports = router;

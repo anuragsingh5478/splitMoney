@@ -1,47 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./groupList.css";
-const data = {
-  msg: "success",
-  groupDetails: [
-    {
-      groupId: "id-1",
-      groupName: "Group A",
-      createdAt: "20 July 2021",
-      members: ["Anurag", "Golu", "anubhav", "molu"],
-    },
-    {
-      groupId: "id-2",
-      groupName: "Group B",
-      createdAt: "21 July 2021",
-      members: ["Mummy", "papa", "golu"],
-    },
-    {
-      groupId: "id-3",
-      groupName: "Group C",
-      createdAt: "22 July 2021",
-      members: ["Anurag", "Golu", "anubhav", "molu"],
-    },
-    {
-      groupId: "id-4",
-      groupName: "Group D",
-      createdAt: "23 July 2021",
-      members: ["Mummy", "papa", "golu"],
-    },
-  ],
+import { Link } from "react-router-dom";
+
+const getToken = () => {
+  const tokenString = localStorage.getItem("token");
+  const userToken = JSON.parse(tokenString);
+  return userToken;
 };
+
 const GroupListCard = (props) => {
   return (
     <div className="group-list-card">
       <div className="group-list-card-info">
         Group Name:{" "}
         <span className="group-list-card-info-value">
-          {props.groupDetail.groupName}
+          {props.groupDetail.name}
         </span>
       </div>
       <div className="group-list-card-info">
         Created At:{" "}
         <span className="group-list-card-info-value">
-          {props.groupDetail.createdAt}
+          {props.groupDetail.date}
         </span>
       </div>
       <div className="group-list-card-info">
@@ -52,7 +32,9 @@ const GroupListCard = (props) => {
       </div>
       <div className="group-list-card-action-button">
         <div>
-          <button className="btn btn-info">View</button>
+          <button className="btn btn-info">
+            <Link to={"/group/" + props.groupDetail._id}>View</Link>
+          </button>
         </div>
         <div>
           <button className="btn btn-info">Delete</button>
@@ -63,9 +45,27 @@ const GroupListCard = (props) => {
 };
 
 export default function GroupList() {
+  const [groupList, setGroupList] = useState([]);
+
+  useEffect(() => {
+    // Todo: Update base url
+    const baseUrl = "http://localhost:5000";
+    // Todo: Update token retrival method
+    const token = getToken();
+    axios
+      .get(baseUrl + "/api/group/all", {
+        headers: { token: token },
+      })
+      .then((res) => {
+        setGroupList(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   const showGroupDetailCard = () => {
-    return data.groupDetails.map((groupDetail) => (
-      <GroupListCard groupDetail={groupDetail} key={groupDetail.groupId} />
+    // Todo: handle if group list is empty
+    return groupList.map((groupDetail) => (
+      <GroupListCard groupDetail={groupDetail} key={groupDetail._id} />
     ));
   };
   return (

@@ -1,61 +1,30 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./viewGroup.css";
 
-let resData = {
-  groupId: "id-1",
-  name: "Group A",
-  createdAt: "20 July 2021",
-  members: [
-    { name: "anurag", email: "anurag@gmail.com" },
-    { name: "golu", email: "golu@gmail.com" },
-    { name: "molu", email: "molu@gmail.com" },
-    { name: "anubhav", email: "anubhav@gmail.com" },
-  ],
-  transactions: [
-    {
-      paidByName: "anurag",
-      paidByEmail: "anurag@gmail.com",
-      paidFor: "milk",
-      amount: 50,
-      date: "22 July 2021",
-    },
-    {
-      paidByName: "anubhav",
-      paidByEmail: "anubhav@gmail.com",
-      paidFor: "milk",
-      amount: 50,
-      date: "22 July 2021",
-    },
-    {
-      paidByName: "anurag",
-      paidByEmail: "anurag@gmail.com",
-      paidFor: "milk",
-      amount: 50,
-      date: "22 July 2021",
-    },
-    {
-      paidByName: "anubhav",
-      paidByEmail: "anubhav@gmail.com",
-      paidFor: "milk",
-      amount: 50,
-      date: "22 July 2021",
-    },
-  ],
+const getToken = () => {
+  const tokenString = localStorage.getItem("token");
+  const userToken = JSON.parse(tokenString);
+  return userToken;
 };
+
 export default function ViewGroup() {
   const [groupInfo, setGroupInfo] = useState({
     groupId: "",
-    createdAt: "",
+    date: "",
     members: [],
     transactions: [],
+    result: [],
+    status: "",
   });
-  const [paidByName, setPaidByName] = useState("");
-  const [paidByEmail, setPaidByEmail] = useState("");
+  const [paidByUserId, setPaidByUserId] = useState("");
+  const [paidByUserName, setPaidByUserName] = useState("");
+  const [paidByUserEmail, setPaidByUserEmail] = useState("");
   const [paidFor, setPaidFor] = useState("");
-  const [amount, setAmount] = useState();
+  const [paidAmount, setPaidAmount] = useState(0);
 
   //   as i have no backend yet, i use transaction state seprately
-  const [transactions, setTransactions] = useState(resData.transactions);
+  const [transactions, setTransactions] = useState([]);
 
   const showOption = () => {
     return groupInfo.members.map((member) => (
@@ -66,21 +35,43 @@ export default function ViewGroup() {
   };
 
   useEffect(() => {
-    setGroupInfo(resData);
+    // Todo: Update base url
+    const baseUrl = "http://localhost:5000";
+    const token = getToken();
+    // Todo: Update groupId retrival method - line +2 and +15
+
+    const groupId = "60d0b71ce97655182480573a";
+    axios
+      .get(baseUrl + "/api/group/one/" + groupId, {
+        headers: { token: token },
+      })
+      .then((res) => {
+        setGroupInfo(res.data);
+        setTransactions(res.data.transactions);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   const handleSumbit = () => {
-    const newTransaction = {
-      paidByName: paidByName,
-      paidByEmail: paidByEmail,
+    const transactionData = {
+      groupId: "60d0b71ce97655182480573a",
+      paidByUserId: paidByUserId,
+      paidByUserName: paidByUserName,
+      paidByUserEmail: paidByUserEmail,
       paidFor: paidFor,
-      amount: amount,
+      paidAmount: paidAmount,
       date: Date.now(),
     };
-    setTransactions(transactions.concat(newTransaction));
-    setAmount(0);
-    setPaidByEmail("");
-    setPaidByName("Select User");
+
+    const baseUrl = "http://localhost:5000";
+    const token = getToken();
+    axios
+      .post(baseUrl + "/api/group/add-transaction", transactionData, {
+        headers: { token: token },
+      })
+      .then((res) => setTransactions(res.data.transactions));
+    setPaidAmount(0);
+    setPaidByUserEmail("");
     setPaidFor("");
   };
 
@@ -96,7 +87,7 @@ export default function ViewGroup() {
         </div>
         <div className="row">
           <div className="col-5 col-sm-3 title">Created At:</div>
-          <div className="col-7 col-sm-9 value">{groupInfo.createdAt}</div>
+          <div className="col-7 col-sm-9 value">{groupInfo.date}</div>
         </div>
         <div className="row">
           <div className="col-sm-3 title">Members:</div>
@@ -123,13 +114,12 @@ export default function ViewGroup() {
               required
               onChange={(e) => {
                 const member = JSON.parse(e.target.value);
-                setPaidByName(member.name);
-                setPaidByEmail(member.email);
+                setPaidByUserName(member.name);
+                setPaidByUserEmail(member.email);
+                setPaidByUserId(member._id);
               }}
             >
-              <option value="" disabled selected>
-                Select User
-              </option>
+              <option defaultValue>Select User</option>
               {showOption()}
             </select>
           </div>
@@ -149,8 +139,8 @@ export default function ViewGroup() {
               className="w-100"
               type="number"
               min="0"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
+              value={paidAmount}
+              onChange={(e) => setPaidAmount(e.target.value)}
               placeholder="Amount"
             ></input>
           </div>
@@ -169,14 +159,14 @@ export default function ViewGroup() {
       {/* show transaction */}
       <div className="transaction-card">
         {transactions.map((transaction) => (
-          <div className="row ">
+          <div className="row " key={transaction._id}>
             <div className="col-sm-6">
-              <div>Paid By:{transaction.paidByName}</div>
-              <div>Paid By:{transaction.paidByEmail}</div>
+              <div>Paid By:{transaction.paidByUserName}</div>
+              <div>Paid By:{transaction.paidByUserEmail}</div>
               <div>Paid For: {transaction.paidFor}</div>
             </div>
             <div className="col-sm-6">
-              <div>Amount Paid: {transaction.amount}</div>
+              <div>Amount Paid: {transaction.paidAmount}</div>
               <div>Date: {transaction.date}</div>
             </div>
           </div>
