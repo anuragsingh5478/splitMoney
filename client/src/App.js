@@ -39,27 +39,29 @@ function App() {
     );
   }
   return (
-    <Router>
-      <div className="App">
-        <Navbar logout={logout} />
+    <AuthContext.Provider value={token}>
+      <Router>
+        <div className="App">
+          <Navbar logout={logout} />
 
-        <Switch>
-          <Route path="/homepage">
-            <Homepage />
-          </Route>
-          <Route path="/create-new-group">
-            <CreateNewGroup />
-          </Route>
-          <Route path="/group/:id">
-            <ViewGroup />
-          </Route>
-          <Route path="/profile">
-            <Profile />
-          </Route>
-          <Redirect to="/homepage" />
-        </Switch>
-      </div>
-    </Router>
+          <Switch>
+            <Route path="/homepage">
+              <Homepage />
+            </Route>
+            <Route path="/create-new-group">
+              <CreateNewGroup />
+            </Route>
+            <Route path="/group/:groupId">
+              <ViewGroup />
+            </Route>
+            <Route path="/profile">
+              <Profile />
+            </Route>
+            <Redirect to="/homepage" />
+          </Switch>
+        </div>
+      </Router>
+    </AuthContext.Provider>
   );
 }
 
