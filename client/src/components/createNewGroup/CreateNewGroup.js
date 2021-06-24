@@ -29,7 +29,7 @@ export default function CreateNewGroup() {
   };
   const showMembers = () => {
     return members.map((member, index) => (
-      <div className="member-info">
+      <div className="member-info" key={index}>
         <div>
           <div>Member{index + 1}:</div>
           <div>Name: {member.name}</div>
@@ -52,7 +52,6 @@ export default function CreateNewGroup() {
       groupName: groupName,
       groupMembers: members,
     };
-    let groupId;
 
     const baseUrl = "https://split-money-5478.herokuapp.com/";
     axios
@@ -61,8 +60,8 @@ export default function CreateNewGroup() {
       })
       .then((res) => {
         console.log(res.data);
-        setResponseMessage(res.data.msg);
         setGroupId(res.data.groupDetail._id);
+        setResponseMessage(res.data.msg);
       })
       .catch((err) => console.log(err));
     // axios for post req
