@@ -1,4 +1,5 @@
 const Group = require("../models/GroupModel");
+const mailService = require("../mailService");
 
 module.exports.settleUp = (req, res) => {
   const groupId = req.body.groupId;
@@ -36,6 +37,7 @@ const getResults = (members, transactions) => {
     results[i].finalAmount = Math.ceil(
       totalAmountForEachMember - results[i].paidAmount
     );
+    mailService.sendEmail(results[i].email, results[i].finalAmount);
   }
 
   console.log(results);
