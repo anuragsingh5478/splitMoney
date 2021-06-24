@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../../App";
+import { Redirect } from "react-router";
 import "./createNewGroup.css";
 export default function CreateNewGroup() {
   const token = useContext(AuthContext);
@@ -9,7 +10,8 @@ export default function CreateNewGroup() {
   const [memberName, setMemberName] = useState("");
   const [memberEmail, setMemberEmail] = useState("");
   const [members, setMembers] = useState([]);
-  // const [resMessage, setResponseMessage] = useState("");
+  const [resMessage, setResponseMessage] = useState("");
+  const [groupId, setGroupId] = useState("");
 
   const addMember = () => {
     let newMember = {
@@ -59,8 +61,8 @@ export default function CreateNewGroup() {
       })
       .then((res) => {
         console.log(res.data);
-        groupId = res.data.groupDetail._id;
-        window.location = "/group/" + groupId;
+        setResponseMessage(res.data.msg);
+        setGroupId(res.data.groupDetail._id);
       })
       .catch((err) => console.log(err));
     // axios for post req
@@ -143,6 +145,7 @@ export default function CreateNewGroup() {
           />
         </div>
       </form>
+      {resMessage === "success" && <Redirect to={"/group/" + groupId} />}
     </div>
   );
 }
