@@ -9,6 +9,10 @@
 .group-info-card > div > .value {
   color: gray;
 }
+.group-info-card > div > button {
+  width: 50%;
+  margin: 20px auto;
+}
 .add-expense-card {
   margin: 20px 0px;
   padding: 20px 10px;
@@ -21,4 +25,18 @@
   background-color: lightcyan;
   border-radius: 5px;
   margin: 10px 0px;
+}
+
+.transaction-card > .heading {
+  font-size: 1.5rem;
+}
+
+.result {
+  margin: 20px 0px;
+  padding: 20px 10px;
+  background-color: lightgreen;
+}
+
+.result > .heading {
+  font-size: 1.5rem;
 }

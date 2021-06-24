@@ -57,7 +57,7 @@ export default function GroupList() {
         headers: { token: token },
       })
       .then((res) => {
-        setGroupList(res.data);
+        setGroupList(res.data.groupsDetail);
       })
       .catch((err) => console.log(err));
   }, []);

@@ -37,6 +37,10 @@ const transactionSchema = mongoose.Schema({
 });
 
 const resultSchema = mongoose.Schema({
+  _id: {
+    type: mongoose.Schema.Types.ObjectId,
+    require: true,
+  },
   name: {
     type: String,
     required: true,
@@ -45,14 +49,18 @@ const resultSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  amount: {
+  paidAmount: {
+    type: Number,
+    required: true,
+  },
+  finalAmount: {
     type: Number,
     required: true,
   },
 });
 const groupSchema = mongoose.Schema({
   name: { type: String, required: true },
-  userId: { type: mongoose.Schema.Types.ObjectId, required: true },
+  userId: { type: String, required: true },
   date: { type: Date, default: Date.now() },
   members: [memberSchema],
   transactions: [transactionSchema],

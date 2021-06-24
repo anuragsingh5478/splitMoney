@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import axios from "axios";
+import { AuthContext } from "../../App";
 import "./createNewGroup.css";
 export default function CreateNewGroup() {
+  const token = useContext(AuthContext);
+
   const [groupName, setGroupName] = useState("");
   const [memberName, setMemberName] = useState("");
   const [memberEmail, setMemberEmail] = useState("");
@@ -46,7 +50,19 @@ export default function CreateNewGroup() {
       groupName: groupName,
       groupMembers: members,
     };
-    console.log(newGroup);
+    let groupId;
+
+    const baseUrl = "http://localhost:5000";
+    axios
+      .post(baseUrl + "/api/group/create-new-group", newGroup, {
+        headers: { token: token },
+      })
+      .then((res) => {
+        console.log(res.data);
+        groupId = res.data.groupDetail._id;
+        window.location = "/group/" + groupId;
+      })
+      .catch((err) => console.log(err));
     // axios for post req
 
     // res -> msg, groupId

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
 import { AuthContext } from "../../App";
+import ShowResult from "./ShowResult";
 import AddExpense from "./AddExpense";
 import ShowTransactions from "./ShowTransactions";
 import "./viewGroup.css";
@@ -15,8 +16,8 @@ export default function ViewGroup(props) {
     date: "",
     members: [],
     transactions: [],
-    result: [],
-    status: "",
+    results: [],
+    status: "active",
   });
 
   const [transactions, setTransactions] = useState([]);
@@ -29,11 +30,21 @@ export default function ViewGroup(props) {
         headers: { token: token },
       })
       .then((res) => {
-        setGroupInfo(res.data);
-        setTransactions(res.data.transactions);
+        setGroupInfo(res.data.groupDetail);
+        setTransactions(res.data.groupDetail.transactions);
       })
       .catch((err) => console.log(err));
   }, [token, groupId]);
+
+  const settleUp = () => {
+    const baseUrl = "http://localhost:5000";
+    const data = { groupId: groupId };
+    axios
+      .post(baseUrl + "/api/group/settle-up", data, {
+        headers: { token: token },
+      })
+      .then((res) => setGroupInfo(res.data.group));
+  };
 
   return (
     <div className="container">
@@ -59,13 +70,24 @@ export default function ViewGroup(props) {
             ))}
           </div>
         </div>
+        <div className="row">
+          <button
+            className="btn btn-warning  justify-items-center"
+            onClick={settleUp}
+          >
+            {groupInfo.status === "active" ? "Settle Up" : "Settled"}
+          </button>
+        </div>
       </div>
-
-      {/* add expense */}
-      <AddExpense
-        setTransactions={setTransactions}
-        members={groupInfo.members}
-      />
+      {/* Show Results or Add More Expenses*/}
+      {groupInfo.status === "active" ? (
+        <AddExpense
+          setTransactions={setTransactions}
+          members={groupInfo.members}
+        />
+      ) : (
+        <ShowResult results={groupInfo.results} />
+      )}
 
       {/* show transaction */}
       <ShowTransactions transactions={transactions} />
