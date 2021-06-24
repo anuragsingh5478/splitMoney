@@ -1,13 +1,14 @@
 .group-info-card {
   margin: 10px 0px;
   padding: 20px 10px;
-  background-color: lightskyblue;
+  background-color: slateblue;
 }
 .group-info-card > div > .title {
+  color: gold;
   font-weight: bolder;
 }
 .group-info-card > div > .value {
-  color: gray;
+  color: white;
 }
 .group-info-card > div > button {
   width: 50%;

@@ -1,0 +1,8 @@
+.create-new-group-button {
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+}
+.create-new-group-text {
+  text-decoration: none;
+}

@@ -58,14 +58,16 @@ export default function ViewGroup(props) {
         </div>
         <div className="row">
           <div className="col-5 col-sm-3 title">Created At:</div>
-          <div className="col-7 col-sm-9 value">{groupInfo.date}</div>
+          <div className="col-7 col-sm-9 value">
+            {groupInfo.date.substr(0, 10)}
+          </div>
         </div>
         <div className="row">
           <div className="col-sm-3 title">Members:</div>
           <div className="col-sm-9 value">
-            {groupInfo.members.map((member) => (
+            {groupInfo.members.map((member, index) => (
               <div key={member._id}>
-                {member.name} ({member.email})
+                {index + 1}. {member.name} ({member.email})
               </div>
             ))}
           </div>

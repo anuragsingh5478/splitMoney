@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Button } from "@material-ui/core";
 import "./groupList.css";
 import { Link } from "react-router-dom";
 
@@ -21,7 +22,7 @@ const GroupListCard = (props) => {
       <div className="group-list-card-info">
         Created At:{" "}
         <span className="group-list-card-info-value">
-          {props.groupDetail.date}
+          {props.groupDetail.date.substr(0, 10)}
         </span>
       </div>
       <div className="group-list-card-info">
@@ -30,14 +31,22 @@ const GroupListCard = (props) => {
           {props.groupDetail.members.length}
         </span>
       </div>
+      <div className="group-list-card-info">
+        Status:
+        <span className="group-list-card-info-value" style={{ color: "green" }}>
+          {props.groupDetail.status}
+        </span>
+      </div>
       <div className="group-list-card-action-button">
         <div>
-          <button className="btn btn-info">
-            <Link to={"/group/" + props.groupDetail._id}>View</Link>
-          </button>
-        </div>
-        <div>
-          <button className="btn btn-info">Delete</button>
+          <a
+            href={"/group/" + props.groupDetail._id}
+            style={{ textDecoration: "none" }}
+          >
+            <Button variant="contained" color="primary">
+              View
+            </Button>
+          </a>
         </div>
       </div>
     </div>

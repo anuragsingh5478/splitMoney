@@ -45,19 +45,19 @@ function App() {
           <Navbar logout={logout} />
 
           <Switch>
-            <Route path="/homepage">
+            <Route path="/" exact>
               <Homepage />
             </Route>
-            <Route path="/create-new-group">
+            <Route path="/create-new-group" exact>
               <CreateNewGroup />
             </Route>
-            <Route path="/group/:groupId">
+            <Route path="/group/:groupId" exact>
               <ViewGroup />
             </Route>
-            <Route path="/profile">
+            <Route path="/profile" exact>
               <Profile />
             </Route>
-            <Redirect to="/homepage" />
+            <Redirect to="/" />
           </Switch>
         </div>
       </Router>
