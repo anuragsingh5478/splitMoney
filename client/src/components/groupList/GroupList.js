@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { Button } from "@material-ui/core";
 import "./groupList.css";
@@ -38,14 +39,14 @@ const GroupListCard = (props) => {
       </div>
       <div className="group-list-card-action-button">
         <div>
-          <a
-            href={"/group/" + props.groupDetail._id}
+          <Link
+            to={"/group/" + props.groupDetail._id}
             style={{ textDecoration: "none" }}
           >
             <Button variant="contained" color="primary">
               View
             </Button>
-          </a>
+          </Link>
         </div>
       </div>
     </div>

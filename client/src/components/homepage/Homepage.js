@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "@material-ui/core";
+import { Link } from "react-router-dom";
 import CreateIcon from "@material-ui/icons/Create";
 import "./homepage.css";
 
@@ -10,9 +11,9 @@ export default function Homepage() {
       {/* create new group */}
 
       <div className="create-new-group-button">
-        <a
+        <Link
+          to="/create-new-group"
           className="create-new-group-button-link"
-          href="/create-new-group"
           style={{ textDecoration: "none" }}
         >
           <Button
@@ -23,7 +24,7 @@ export default function Homepage() {
           >
             Create New Group
           </Button>
-        </a>
+        </Link>
       </div>
 
       {/* group list */}
