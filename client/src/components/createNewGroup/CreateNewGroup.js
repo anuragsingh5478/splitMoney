@@ -9,7 +9,7 @@ export default function CreateNewGroup() {
   const [memberName, setMemberName] = useState("");
   const [memberEmail, setMemberEmail] = useState("");
   const [members, setMembers] = useState([]);
-  const [resMessage, setResponseMessage] = useState("");
+  // const [resMessage, setResponseMessage] = useState("");
 
   const addMember = () => {
     let newMember = {
@@ -134,7 +134,7 @@ export default function CreateNewGroup() {
         </div>
 
         <div className="d-flex justify-content-center">
-          <div>{resMessage}</div>
+          {/* <div>{resMessage}</div> */}
           <input
             className="btn btn-info w-50"
             type="submit"

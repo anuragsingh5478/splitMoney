@@ -19,11 +19,11 @@ export default function ShowResult(props) {
         setResults(res.data.groupDetail.results);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [token, groupId]);
 
   const showResult = () => {
     return results.map((result) => (
-      <div>
+      <div key={result._id}>
         {result.name}({result.email}){" "}
         {result.finalAmount < 0 ? " will get " : " will pay "} Rs.
         {Math.abs(Math.round(result.finalAmount))}
