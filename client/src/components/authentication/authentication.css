@@ -1,4 +1,151 @@
-.authentication {
+.login {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgb(131, 58, 180);
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+}
+
+.login-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 40vw;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 20px 0px;
+}
+.login-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+.login-card-header {
+  font-size: 1.5rem;
+  text-align: center;
+}
+.login-card > form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.login-card > form > div {
+  width: 80%;
+  margin: 10px 0px;
+}
+.login-card > form > div > input {
+  width: 100%;
+  font-size: 1rem;
+  padding: 5px;
+  border-radius: 5px;
+  outline: none;
+}
+.eye {
+  border: none;
+  margin-left: -30px;
+  cursor: pointer;
+}
+.error-msg {
+  font-size: 0.8rem;
+  text-align: center;
+  color: white;
+}
+.login-register {
+  text-align: center;
+}
+.submit-button {
+  background-color: slateblue;
+  color: white;
+}
+
+@media only screen and (max-width: 600px) {
+  .login-card {
+    width: 90vw;
+  }
+}
+
+/* For Registe.js */
+
+.signup {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgb(131, 58, 180);
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+}
+
+.signup-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 40vw;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 20px 0px;
+}
+.signup-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+.signup-card-header {
+  font-size: 1.5rem;
+  text-align: center;
+}
+.signup-card > form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.signup-card > form > div {
+  width: 80%;
+  margin: 10px 0px;
+}
+.signup-card > form > div > input,
+select {
+  width: 100%;
+  font-size: 1rem;
+  padding: 5px;
+  border-radius: 5px;
+  outline: none;
+}
+.eye {
+  border: none;
+  margin-left: -30px;
+  cursor: pointer;
+}
+.error-msg {
+  font-size: 0.8rem;
+  text-align: center;
+  color: white;
+}
+.login-register {
+  text-align: center;
+}
+.submit-button {
+  background-color: slateblue;
+  color: white;
+}
+
+@media only screen and (max-width: 600px) {
+  .signup-card {
+    width: 90vw;
+  }
+}
+
+/* .authentication {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -39,4 +186,4 @@ form {
 .submit-button {
   background-color: slateblue;
   color: white;
-}
+} */
