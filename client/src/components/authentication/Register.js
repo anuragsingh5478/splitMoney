@@ -9,7 +9,7 @@ export default function Register({ setToken }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [gender, setGender] = useState("Male");
+  // const [gender, setGender] = useState("Male");
   const [passwordVisibility, setPasswordVisibility] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -20,7 +20,7 @@ export default function Register({ setToken }) {
       name: name,
       email: email,
       password: password,
-      gender: gender,
+      // gender: gender,
     };
 
     axios
@@ -72,13 +72,13 @@ export default function Register({ setToken }) {
               {passwordVisibility ? <VisibilityOffIcon /> : <VisibilityIcon />}
             </span>
           </div>
-          <div>
+          {/* <div>
             <select value={gender} onChange={(e) => setGender(e.target.value)}>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
               <option value="Others">Others</option>
             </select>
-          </div>
+          </div> */}
           <div className="error-msg">{errorMsg}</div>
           <div>
             <input type="submit" value="Register" className="submit-button" />
