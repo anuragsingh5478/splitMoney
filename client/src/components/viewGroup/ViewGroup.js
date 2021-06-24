@@ -24,9 +24,9 @@ export default function ViewGroup(props) {
 
   useEffect(() => {
     // Todo: Update base url
-    const baseUrl = "http://localhost:5000";
+    const baseUrl = "https://split-money-5478.herokuapp.com/";
     axios
-      .get(baseUrl + "/api/group/one/" + groupId, {
+      .get(baseUrl + "api/group/one/" + groupId, {
         headers: { token: token },
       })
       .then((res) => {
@@ -37,10 +37,10 @@ export default function ViewGroup(props) {
   }, [token, groupId]);
 
   const settleUp = () => {
-    const baseUrl = "http://localhost:5000";
+    const baseUrl = "https://split-money-5478.herokuapp.com/";
     const data = { groupId: groupId };
     axios
-      .post(baseUrl + "/api/group/settle-up", data, {
+      .post(baseUrl + "api/group/settle-up", data, {
         headers: { token: token },
       })
       .then((res) => setGroupInfo(res.data.group));

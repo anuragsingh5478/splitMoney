@@ -24,9 +24,9 @@ export default function AddExpense(props) {
       date: Date.now(),
     };
 
-    const baseUrl = "http://localhost:5000";
+    const baseUrl = "https://split-money-5478.herokuapp.com/";
     axios
-      .post(baseUrl + "/api/group/add-transaction", transactionData, {
+      .post(baseUrl + "api/group/add-transaction", transactionData, {
         headers: { token: token },
       })
       .then((res) => props.setTransactions(res.data.transactions));

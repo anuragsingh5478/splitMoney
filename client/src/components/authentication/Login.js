@@ -20,7 +20,7 @@ export default function Login({ setToken }) {
     };
 
     axios
-      .post("http://localhost:5000/api/user/login", user)
+      .post("https://split-money-5478.herokuapp.com/api/user/login", user)
       .then((res) => {
         const msg = res.data.msg;
         if (msg === "success") {

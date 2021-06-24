@@ -52,9 +52,9 @@ export default function CreateNewGroup() {
     };
     let groupId;
 
-    const baseUrl = "http://localhost:5000";
+    const baseUrl = "https://split-money-5478.herokuapp.com/";
     axios
-      .post(baseUrl + "/api/group/create-new-group", newGroup, {
+      .post(baseUrl + "api/group/create-new-group", newGroup, {
         headers: { token: token },
       })
       .then((res) => {

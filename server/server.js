@@ -32,5 +32,9 @@ app.use(cors());
 app.use("/api/user", authRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/group", groupRoute);
+app.get("/", (req, res) => {
+  console.log("connected");
+  res.send("working");
+});
 
 app.listen(PORT, () => console.log(`server started at port: ${PORT}`));

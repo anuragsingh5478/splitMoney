@@ -24,7 +24,7 @@ export default function Register({ setToken }) {
     };
 
     axios
-      .post("http://localhost:5000/api/user/register", user)
+      .post("https://split-money-5478.herokuapp.com/api/user/register", user)
       .then((res) => {
         const msg = res.data.msg;
         if (msg === "success") {

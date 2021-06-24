@@ -10,9 +10,9 @@ export default function ShowResult(props) {
   const [results, setResults] = useState([]);
 
   useEffect(() => {
-    const baseUrl = "http://localhost:5000";
+    const baseUrl = "https://split-money-5478.herokuapp.com/";
     axios
-      .get(baseUrl + "/api/group/one/" + groupId, {
+      .get(baseUrl + "api/group/one/" + groupId, {
         headers: { token: token },
       })
       .then((res) => {

@@ -58,11 +58,11 @@ export default function GroupList() {
 
   useEffect(() => {
     // Todo: Update base url
-    const baseUrl = "http://localhost:5000";
+    const baseUrl = "https://split-money-5478.herokuapp.com/";
     // Todo: Update token retrival method
     const token = getToken();
     axios
-      .get(baseUrl + "/api/group/all", {
+      .get(baseUrl + "api/group/all", {
         headers: { token: token },
       })
       .then((res) => {
