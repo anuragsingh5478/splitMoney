@@ -22,7 +22,7 @@ export default function CreateNewGroup() {
     };
 
     if (newMember.email === "" || newMember.name === "") {
-      setAddMemberMessage("Name and Email is Required!");
+      setAddMemberMessage("Name and Email is Required !");
       return;
     }
     setMembers(members.concat(newMember));
@@ -135,7 +135,8 @@ export default function CreateNewGroup() {
                 placeholder="member's email"
               />
             </div>
-            {addMemberMessage}
+            <div className="info-message">{addMemberMessage}</div>
+
             <div className="d-flex justify-content-center">
               <button
                 className="w-50 m-auto btn btn-info "
@@ -153,7 +154,7 @@ export default function CreateNewGroup() {
             {members.length === 0 ? "No Members Added" : showMembers()}
           </div>
         </div>
-        <div>{createGroupMessage}</div>
+        <div className="info-message">{createGroupMessage}</div>
         <div className="d-flex justify-content-center">
           {/* <div>{resMessage}</div> */}
           <input

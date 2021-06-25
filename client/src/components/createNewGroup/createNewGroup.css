@@ -29,3 +29,9 @@ form > div {
 .member-info {
   margin: 10px 0px;
 }
+
+.info-message {
+  color: red;
+  font-size: 0.8rem;
+  text-align: center;
+}
