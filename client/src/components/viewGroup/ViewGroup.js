@@ -37,6 +37,9 @@ export default function ViewGroup(props) {
   }, [token, groupId]);
 
   const settleUp = () => {
+    if (groupInfo.status === "settled") {
+      return;
+    }
     const baseUrl = "https://split-money-5478.herokuapp.com/";
     const data = { groupId: groupId };
     axios
