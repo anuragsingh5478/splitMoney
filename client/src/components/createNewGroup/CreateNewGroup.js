@@ -11,6 +11,8 @@ export default function CreateNewGroup() {
   const [memberEmail, setMemberEmail] = useState("");
   const [members, setMembers] = useState([]);
   const [resMessage, setResponseMessage] = useState("");
+  const [addMemberMessage, setAddMemberMessage] = useState("");
+  const [createGroupMessage, setCreateGroupMessage] = useState("");
   const [groupId, setGroupId] = useState("");
 
   const addMember = () => {
@@ -18,9 +20,15 @@ export default function CreateNewGroup() {
       name: memberName,
       email: memberEmail,
     };
+
+    if (newMember.email === "" || newMember.name === "") {
+      setAddMemberMessage("Name and Email is Required!");
+      return;
+    }
     setMembers(members.concat(newMember));
     setMemberName("");
     setMemberEmail("");
+    setAddMemberMessage("");
   };
   const deleteMember = (index) => {
     setMembers((members) =>
@@ -53,6 +61,17 @@ export default function CreateNewGroup() {
       groupMembers: members,
     };
 
+    if (newGroup.groupName === "") {
+      setCreateGroupMessage("Group Name is mandatory  !");
+      return;
+    }
+    setCreateGroupMessage("");
+    if (newGroup.groupMembers.length === 0) {
+      setCreateGroupMessage("Minimum one member required !");
+      return;
+    }
+    setCreateGroupMessage("");
+
     const baseUrl = "https://split-money-5478.herokuapp.com/";
     axios
       .post(baseUrl + "api/group/create-new-group", newGroup, {
@@ -83,7 +102,7 @@ export default function CreateNewGroup() {
           </div>
           <div className="col-sm-6 ">
             <input
-              className="w-100"
+              className="w-100 create-new-group-value "
               type="text"
               name="group-name"
               value={groupName}
@@ -98,7 +117,7 @@ export default function CreateNewGroup() {
           <div className="col-sm-6">
             <div>
               <input
-                className="w-100"
+                className="w-100  create-new-group-value"
                 type="text"
                 name="member-name"
                 value={memberName}
@@ -108,7 +127,7 @@ export default function CreateNewGroup() {
             </div>
             <div>
               <input
-                className="w-100"
+                className="w-100 create-new-group-value"
                 type="text"
                 name="member-email"
                 value={memberEmail}
@@ -116,9 +135,10 @@ export default function CreateNewGroup() {
                 placeholder="member's email"
               />
             </div>
+            {addMemberMessage}
             <div className="d-flex justify-content-center">
               <button
-                className="w-50 m-auto btn btn-info"
+                className="w-50 m-auto btn btn-info "
                 onClick={() => addMember()}
               >
                 Add Member
@@ -133,7 +153,7 @@ export default function CreateNewGroup() {
             {members.length === 0 ? "No Members Added" : showMembers()}
           </div>
         </div>
-
+        <div>{createGroupMessage}</div>
         <div className="d-flex justify-content-center">
           {/* <div>{resMessage}</div> */}
           <input

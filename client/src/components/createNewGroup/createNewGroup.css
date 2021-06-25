@@ -12,14 +12,17 @@ form > div {
   color: gray;
   font-weight: bolder;
 }
+.create-new-group-value {
+  margin: 5px 0px;
+  padding: 5px;
+}
 .add-member {
   display: flex;
 }
 .member-list-heading {
   font-size: 1.5rem;
 }
-.member-list {
-}
+
 .member-info {
   display: flex;
 }
