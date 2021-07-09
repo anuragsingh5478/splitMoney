@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
-import { Button } from "@material-ui/core";
 import "./groupList.css";
+import GroupListCard from "./GroupListCard";
 
 const getToken = () => {
   const tokenString = localStorage.getItem("token");
@@ -10,56 +9,11 @@ const getToken = () => {
   return userToken;
 };
 
-const GroupListCard = (props) => {
-  return (
-    <div className="group-list-card">
-      <div className="group-list-card-info">
-        Group Name:{" "}
-        <span className="group-list-card-info-value">
-          {props.groupDetail.name}
-        </span>
-      </div>
-      <div className="group-list-card-info">
-        Created At:{" "}
-        <span className="group-list-card-info-value">
-          {props.groupDetail.date.substr(0, 10)}
-        </span>
-      </div>
-      <div className="group-list-card-info">
-        Group Members:{" "}
-        <span className="group-list-card-info-value">
-          {props.groupDetail.members.length}
-        </span>
-      </div>
-      <div className="group-list-card-info">
-        Status:
-        <span className="group-list-card-info-value" style={{ color: "green" }}>
-          {props.groupDetail.status}
-        </span>
-      </div>
-      <div className="group-list-card-action-button">
-        <div>
-          <Link
-            to={"/group/" + props.groupDetail._id}
-            style={{ textDecoration: "none" }}
-          >
-            <Button variant="contained" color="primary">
-              View
-            </Button>
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 export default function GroupList() {
   const [groupList, setGroupList] = useState([]);
 
   useEffect(() => {
-    // Todo: Update base url
     const baseUrl = "https://split-money-5478.herokuapp.com/";
-    // Todo: Update token retrival method
     const token = getToken();
     axios
       .get(baseUrl + "api/group/all", {

@@ -3,12 +3,13 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const { registerValidation, loginValidation } = require("../validation");
 
+// Function to Register a New User
 module.exports.registerUser = async (req, res) => {
-  // Validation
+  // Validation of user's name, email and password
   const { error, value } = registerValidation(req.body);
   if (error) return res.send({ msg: error.details[0].message });
 
-  // Checking if User's Email Already in the Database
+  // Checking if User's Email Already in the Database, if so then new user can't be created
   const emailExist = await User.findOne({ email: req.body.email });
   if (emailExist) return res.send({ msg: "email already in use" });
 
@@ -33,12 +34,13 @@ module.exports.registerUser = async (req, res) => {
   }
 };
 
+// Function to login user
 module.exports.loginUser = async (req, res) => {
-  // Validation
+  // Validation of email and password
   const { error, value } = loginValidation(req.body);
   if (error) return res.send({ msg: error.details[0].message });
 
-  // Checking if User's Email Already in the Database
+  // Checking if User's Email Already in the Database, if not then user can't login
   const user = await User.findOne({ email: req.body.email });
   if (!user) return res.send({ msg: "email does not exist" });
 

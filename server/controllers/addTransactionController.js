@@ -1,9 +1,7 @@
 const Group = require("../models/GroupModel");
 
+// Function to Add Transactions to a Group with given groupId
 module.exports.addTransaction = (req, res) => {
-  console.log("adding transaction");
-  console.log(req.body);
-
   const transactionData = req.body;
   const newTransaction = {
     paidByUserId: transactionData.paidByUserId,

@@ -9,6 +9,6 @@ module.exports = function (req, res, next) {
     req.userId = verified._id;
     next();
   } catch (err) {
-    res.send({ msg: "Invalid Token" }); //.status(400).
+    res.send({ msg: "Invalid Token" }); //status code (400).
   }
 };

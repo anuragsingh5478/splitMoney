@@ -1,7 +1,9 @@
 const Group = require("../models/GroupModel");
 const mailService = require("../mailService");
 
+// Function to Settle Up Transactions of a Group with given groupId
 module.exports.settleUp = (req, res) => {
+  // Finding the group, calculating the result, and updating it status as "settled"
   const groupId = req.body.groupId;
   Group.findById(groupId).then((group) => {
     group.results = getResults(group.members, group.transactions);
@@ -10,8 +12,10 @@ module.exports.settleUp = (req, res) => {
   });
 };
 
+// Fuction to Calculating and Returning the Result
 const getResults = (members, transactions) => {
   const results = [];
+  // Creating a result template for all the users.
   members.map((member) => {
     const temp = {
       _id: member._id,
@@ -23,6 +27,7 @@ const getResults = (members, transactions) => {
     results.push(temp);
   });
 
+  // Calculating the TotalAmount spent in the Group.
   let totalAmount = 0;
   transactions.map((transaction) => {
     const index = results.findIndex(
@@ -32,7 +37,13 @@ const getResults = (members, transactions) => {
     totalAmount += transaction.paidAmount;
   });
 
+  // Calculating the Amount that each user had to pay.
   let totalAmountForEachMember = totalAmount / members.length;
+
+  // Calculating the Amount each user owe.
+  // Let Final Amount be x.
+  // Amount positive -> user had to pay x amount
+  //  Amount negative -> user will recieve x amount.
   for (let i = 0; i < results.length; i++) {
     results[i].finalAmount = Math.ceil(
       totalAmountForEachMember - results[i].paidAmount
@@ -40,7 +51,7 @@ const getResults = (members, transactions) => {
     mailService.sendEmail(results[i].email, results[i].finalAmount);
   }
 
-  console.log(results);
+  // console.log(results);
 
   return results;
 };

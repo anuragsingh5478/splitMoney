@@ -6,15 +6,16 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+// importing components
 import Login from "./components/authentication/Login";
 import Register from "./components/authentication/Register";
 import useToken from "./useToken";
 import Homepage from "./components/homepage/Homepage";
 import Navbar from "./components/navbar/Navbar";
-import Profile from "./profile/Profile";
 import CreateNewGroup from "./components/createNewGroup/CreateNewGroup";
 import ViewGroup from "./components/viewGroup/ViewGroup";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 export const AuthContext = React.createContext();
 
@@ -29,7 +30,7 @@ function App() {
             <Route path="/login">
               <Login setToken={setToken} />
             </Route>
-            <Route path="/register">
+            <Route path="/register" exact>
               <Register setToken={setToken} />
             </Route>
             <Redirect to="/login" />
@@ -53,9 +54,6 @@ function App() {
             </Route>
             <Route path="/group/:groupId" exact>
               <ViewGroup />
-            </Route>
-            <Route path="/profile" exact>
-              <Profile />
             </Route>
             <Redirect to="/" />
           </Switch>

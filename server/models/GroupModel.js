@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+// Schema for members of a group
 const memberSchema = mongoose.Schema({
   name: {
     type: String,
@@ -9,6 +10,8 @@ const memberSchema = mongoose.Schema({
     required: true,
   },
 });
+
+// Schema for Transactions
 const transactionSchema = mongoose.Schema({
   paidByUserId: {
     type: String,
@@ -36,6 +39,7 @@ const transactionSchema = mongoose.Schema({
   },
 });
 
+// Schema for Result of the transactions.
 const resultSchema = mongoose.Schema({
   _id: {
     type: mongoose.Schema.Types.ObjectId,
@@ -58,6 +62,8 @@ const resultSchema = mongoose.Schema({
     required: true,
   },
 });
+
+// Schema for Group Info
 const groupSchema = mongoose.Schema({
   name: { type: String, required: true },
   userId: { type: String, required: true },
