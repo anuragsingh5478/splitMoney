@@ -1,7 +1,7 @@
 .group-info-card {
   margin: 10px 0px;
   padding: 20px 10px;
-  background-color: slateblue;
+  background-color: #007cc7;
 }
 .group-info-card > div > .title {
   color: gold;
@@ -23,7 +23,7 @@
   padding: 20px 10px;
 }
 .transaction-card > div {
-  background-color: lightcyan;
+  background-color: #4da8da;
   border-radius: 5px;
   margin: 10px 0px;
 }
@@ -36,8 +36,12 @@
   margin: 20px 0px;
   padding: 20px 10px;
   background-color: lightgreen;
+  color: #007cc7;
 }
 
+.result > ul {
+  margin-left: 20px;
+}
 .result > .heading {
   font-size: 1.5rem;
 }

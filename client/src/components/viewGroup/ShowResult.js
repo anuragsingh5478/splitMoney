@@ -23,17 +23,19 @@ export default function ShowResult(props) {
 
   const showResult = () => {
     return results.map((result) => (
-      <div key={result._id}>
+      <li key={result._id}>
         {result.name}({result.email}){" "}
         {result.finalAmount < 0 ? " will get " : " will pay "} Rs.
         {Math.abs(Math.round(result.finalAmount))}
-      </div>
+        <hr />
+      </li>
     ));
   };
   return (
     <div className="result">
-      <div className="heading">Results:</div>
-      {showResult()}
+      <div className="heading text-center text-white">Results</div>
+      <hr />
+      <ul>{showResult()}</ul>
     </div>
   );
 }

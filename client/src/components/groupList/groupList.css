@@ -1,4 +1,5 @@
 .group-list-card {
+  background-color: #4da8da;
   margin: 10px 0px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
@@ -10,10 +11,11 @@
 }
 
 .group-list-card-info {
+  color: white;
   font-size: 1.5rem;
 }
 .group-list-card-info-value {
-  color: slateblue;
+  color: white;
   margin-left: 10px;
 }
 .group-list-card-action-button {

@@ -26,17 +26,21 @@ export default function GroupListCard(props) {
       </div>
       <div className="group-list-card-info">
         Status:
-        <span className="group-list-card-info-value" style={{ color: "green" }}>
+        <span
+          className="group-list-card-info-value"
+          style={{ color: "lightgreen" }}
+        >
           {props.groupDetail.status}
         </span>
       </div>
+      <hr />
       <div className="group-list-card-action-button">
         <div>
           <Link
             to={"/group/" + props.groupDetail._id}
             style={{ textDecoration: "none" }}
           >
-            <Button variant="contained" color="primary">
+            <Button variant="contained" color="secondary">
               View
             </Button>
           </Link>

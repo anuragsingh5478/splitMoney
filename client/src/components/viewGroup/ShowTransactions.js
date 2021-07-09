@@ -3,7 +3,7 @@ import React from "react";
 export default function ShowTransactions(props) {
   return (
     <div className="transaction-card">
-      <div className="heading">Transaction History:</div>
+      <div className="heading text-center text-white">Transaction History</div>
       {props.transactions.map((transaction) => (
         <div className="row " key={transaction._id}>
           <div className="col-sm-6">
