@@ -5,7 +5,6 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 //Import Routes
 const authRoute = require("./routes/authRoute");
-const postRoute = require("./routes/postRoute");
 const groupRoute = require("./routes/groupRoute");
 
 dotenv.config();
@@ -30,7 +29,6 @@ app.use(cors());
 
 //Routes Middleware
 app.use("/api/user", authRoute);
-app.use("/api/posts", postRoute);
 app.use("/api/group", groupRoute);
 app.get("/", (req, res) => {
   console.log("connected");
