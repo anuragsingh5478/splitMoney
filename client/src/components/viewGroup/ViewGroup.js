@@ -52,7 +52,7 @@ export default function ViewGroup(props) {
   return (
     <div className="container">
       {/* group heading */}
-      <div className="text-center h1">Group Details</div>
+      <div className="text-center h1">Group Detail</div>
       {/* group info */}
       <div className="group-info-card">
         <div className="row">
